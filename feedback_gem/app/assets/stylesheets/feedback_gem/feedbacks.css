@@ -1,0 +1,33 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+ 
+.container{
+	background-color: #FFFFFF;
+	margin:30px 0px;
+}
+.newpost{
+	margin:20px 0px;
+}
+.feedbacklist{
+	background-color:#E1E0E0;
+	margin:20px 0px;
+	color:black;
+}
+.card-style{
+	width:40%;
+	margin:20px auto;
+}
+.footer-style{
+	width:100%;
+	text-align:right;
+}
+.new{
+	width:70%;
+	margin:30px auto;
+	border:1px solid rgba(0,0,0,0.09);
+	padding:30px;
+	border-radius:4px;
+	box-shadow: 0px 4px 6px 4px rgba(0,0,0,0.06);
+}

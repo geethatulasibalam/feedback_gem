@@ -1,0 +1,17 @@
+<div class='card card-style'>
+	<div class='card-header'>
+		<h4>feedback from <%= @feedback.name%></h4>
+	</div>
+	<div class='card-body'>
+		<p class='card-text'><strong>Name:</strong><%= @feedback.name %></p>
+		<p class='card-text'><strong>Email:</strong><%= @feedback.email %></p>
+		<p class='card-text'><strong>Subject:</strong><%= @feedback.subject %></p>
+		<p class='card-text'><strong>Feedback:</strong><%= @feedback.description %></p>
+	</div>
+	<div class='card-footer'>
+		<div class='footer-style'>
+			<%=link_to 'Back', feedbacks_path,:class=>'btn btn-secondary' %>
+			<%=link_to 'edit', edit_feedback_path,:class=>'btn btn-success' %>
+		</div>
+	</div>
+</div>
