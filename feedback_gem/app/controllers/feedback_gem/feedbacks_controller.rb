@@ -3,7 +3,7 @@ require_dependency "feedback_gem/application_controller"
 module FeedbackGem
   class FeedbacksController < ApplicationController
   	def index
-  		@feedbacks = Feedback.all
+  		@feedbacks = Feedback.order('created_at DESC')
   	end
   	def new
   		@feedback = Feedback.new
@@ -14,8 +14,10 @@ module FeedbackGem
   	def create
   		@feedback = Feedback.new(feedback_params)
   		if@feedback.save
+        flash[:success] = "Feedback successfully created"
   			redirect_to @feedback
   		else
+        flash[:error] = "Feeback is not created"
   			render 'new'
   		end
   	end
@@ -24,16 +26,19 @@ module FeedbackGem
   	end
   	def update
   		# binding.pry
-  		feedback
-  		if @feedback.update(feedback_params)
+      feedback
+      if @feedback.update(feedback_params)
+        flash[:success] = "Feedback has been successfully updated"
   			redirect_to feedbacks_path
   		else
+        flash[:error] = "Feedback not updated"
   			render 'edit'
   		end
   	end
   	def destroy
   		feedback
   		@feedback.destroy
+      flash[:success] = "Feedback successfully destroyed"
   		redirect_to feedbacks_path
   	end
   	private

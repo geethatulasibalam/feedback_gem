@@ -1,24 +1,49 @@
-<div class="container new">
-	<%= form_with(model: @feedback, local: true) do |f| %>
-		<div>
-			<p>
-				<%=f.label :name %>
-				<%=f.text_field :name %>
-			</p>
-			<p>
-				<%=f.label :email %>
-				<%=f.text_field :email %>
-			</p>
-			<p>
-				<%=f.label :subject %>
-				<%=f.text_field :subject %>
-			</p>
-			<p>
-				<%=f.label :description %>
-				<%=f.text_area :description %>
-			</p>
-			<%=link_to 'Back', feedbacks_path,:class=>'btn btn-secondary' %>
-			<%=f.submit 'Update' ,:class=>'btn btn-warning'%>
-		</div>
-	<%end %>
+<div class="container">
+	<% flash.each do |key, value| %>
+    <div class="<%= flash_class(key) %>">
+      <%= value %>
+    </div>
+	<% end %>
+	<div class="new">
+		<%= form_with(model: @feedback, local: true) do |f| %>
+			<div class="row formfields">
+				<div class='col col-md-2'>
+					<%=f.label :name %>
+				</div>
+				<div class='offset-1 col col-md-9'>
+					<%=f.text_field :name,:class=>"input" %>
+				</div>
+			</div>
+			<div class='row formfields'>
+				<div class='col col-md-2'>
+					<%=f.label :email %>
+				</div>
+				<div class='offset-1 col col-md-9'>
+					<%=f.text_field :email,:class=>"input" %>
+				</div>
+			</div>
+			<div class='row formfields'>
+				<div class='col col-md-2'>
+					<%=f.label :subject %>
+				</div>
+				<div class='offset-1 col col-md-9'>
+					<%=f.text_field :subject,:class=>"input" %>
+				</div>
+			</div>
+			<div class='row formfields'>
+				<div class='col col-md-2'>
+					<%=f.label :description %>
+				</div>
+				<div class='offset-1 col col-md-9'>
+					<%=f.text_field :description,:class=>"input" %>
+				</div>
+			</div>
+			<div class="row formfields">
+				<div class="offset-8 col-6 col-md-4">
+					<%=link_to 'Back', feedbacks_path,:class=>'btn btn-secondary' %>
+					<%=f.submit 'Update' ,:class=>'btn btn-success'%>
+				</div>
+			</div>
+		<%end %>
+	</div>
 </div>
