@@ -4,9 +4,13 @@
       <%= value %>
     </div>
 	<% end %>
-	<div class="newpost">
+	<nav class="navbar navbar-light bg-light">
 		<%=link_to 'create new feedback', new_feedback_path,:class=>'btn btn-warning' %>
-	</div>
+		<%= form_tag(feedbacks_path, :method => "get", id: "feedback-form",:class=>"form-inline") do %>
+			<%= text_field_tag :search, params[:search], placeholder: "Search feedbacks",:class=>"form-control mr-sm-2" %>
+			<%= submit_tag "Search",:class=>"btn btn-outline-success my-2 my-sm-0" %>
+		<% end %>
+	</nav>
 	<div class="feedbacklist">
 		<table class="table table-bordered table-hover">
 			<thead class="thead-light">
@@ -44,9 +48,30 @@
 							<%= link_to edit_feedback_path(feedback),:class=>'btn btn-secondary btns' do %>
 								<i class="fa fa-pencil"></i>
 							<% end %>
-							<%= link_to feedback_path(feedback),method: :delete, data:{confirm: 'Are you sure?'}, :class=>'btn btn-danger btns' do %>
+							<%= link_to '#', "data-toggle"=>"modal", "data-target" => "#delete-#{feedback.id}",:class=>'btn btn-danger btn' do %>
 								<i class="fa fa-trash"></i>
 							<% end %>
+								<div class="modal fade" id="delete-<%= feedback.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+									 <div class="modal-dialog modal-dialog-scrollable" role="document">
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <h5 class="modal-title" id="exampleModalScrollableTitle">Delete</h5>
+									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									          <span aria-hidden="true">&times;</span>
+									        </button>
+									      </div>
+									      <div class="modal-body">
+									        Do you want to delete the feedback?
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									        <%= link_to 'Yes', feedback_path(feedback), method: :delete, :class => 'btn btn-danger'%>
+									      </div>
+									    </div>
+									  </div>
+									</div>
+								</div>
+							</div>
 						</td>
 					</tr>
 				<% end %> 
@@ -54,4 +79,3 @@
 		</table>
 	</div>
 </div>
- 

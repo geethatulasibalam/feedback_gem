@@ -41,3 +41,25 @@
 .formfields{
 	margin:10px 0px;
 }
+.header{
+	background-color:#95C6C4;
+}
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.footer{
+  background-color:#BFC3C6;
+  height: 62px;  
+  margin:20px auto;
+  padding:20px;
+  text-align:center;
+}
+.navtext{
+	text-align:left;
+}
+.nav-item a:hover{
+	cursor:disabled;
+}

@@ -4,6 +4,7 @@ module FeedbackGem
   class FeedbacksController < ApplicationController
   	def index
   		@feedbacks = Feedback.order('created_at DESC')
+      @feedbacks = @feedbacks.search(params[:search]) if params[:search].present?
   	end
   	def new
   		@feedback = Feedback.new
@@ -15,7 +16,7 @@ module FeedbackGem
   		@feedback = Feedback.new(feedback_params)
   		if@feedback.save
         flash[:success] = "Feedback successfully created"
-  			redirect_to @feedback
+  			redirect_to feedbacks_path
   		else
         flash[:error] = "Feeback is not created"
   			render 'new'
