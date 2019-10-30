@@ -1,3 +1,4 @@
+--git clone https://github.com/geethatulasi-nyros/feedback_gem
 # FeedbackGem
 Short description and motivation.
 
@@ -14,12 +15,19 @@ gem 'feedback_gem'
 And then execute:
 ```bash
 $ bundle
-```
+``
 
 Or install it yourself as:
 ```bash
 $ gem install feedback_gem
 ```
+##Migrations
+$ rails feedback_gem:install:migrations
+
+$ rails db:migrate
+
+## Routes
+mount FeedbackGem::Engine => "/feedback_gem"
 
 ## Contributing
 Contribution directions go here.
