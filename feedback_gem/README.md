@@ -21,7 +21,7 @@ Or install it yourself as:
 ```bash
 $ gem install feedback_gem
 ```
-##Migrations
+## Migrations
 $ rails feedback_gem:install:migrations
 
 $ rails db:migrate
