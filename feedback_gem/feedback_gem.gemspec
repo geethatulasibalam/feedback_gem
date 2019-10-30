@@ -30,4 +30,5 @@ Gem::Specification.new do |spec|
   # spec.add_dependency "font-awesome-rails",'~>4.7'
   # spec.add_dependency "bootstrap",'4.3'
   spec.add_development_dependency "sqlite3","~>1.0"
+  spec.add_development_dependency 'jquery-rails', '~> 4.3'
 end

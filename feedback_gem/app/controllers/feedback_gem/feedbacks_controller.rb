@@ -19,7 +19,7 @@ module FeedbackGem
   			redirect_to feedbacks_path
   		else
         flash[:error] = "Feeback is not created"
-  			render 'new'
+  			redirect_to feedbacks_path
   		end
   	end
   	def edit
@@ -33,7 +33,7 @@ module FeedbackGem
   			redirect_to feedbacks_path
   		else
         flash[:error] = "Feedback not updated"
-  			render 'edit'
+  			redirect_to feedbacks_path
   		end
   	end
   	def destroy
