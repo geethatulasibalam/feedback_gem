@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    feedback_gem (0.2.8)
+    feedback_gem (0.2.9)
       rails (~> 5.2)
 
 GEM
