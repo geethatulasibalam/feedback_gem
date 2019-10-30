@@ -1,0 +1,32 @@
+<div class="row formfields">
+	<div class='col col-md-2'>
+		<%=f.label :name %>
+	</div>
+	<div class='offset-1 col col-md-9'>
+		<%=f.text_field :name,:class=>"input",required: true %>
+	</div>
+</div>
+<div class='row formfields'>
+	<div class='col col-md-2'>
+		<%=f.label :email %>
+	</div>
+	<div class='offset-1 col col-md-9'>
+		<%=f.text_field :email,:class=>"input",required: true,type: "email" %>
+	</div>
+</div>
+<div class='row formfields'>
+	<div class='col col-md-2'>
+		<%=f.label :subject %>
+	</div>
+	<div class='offset-1 col col-md-9'>
+		<%=f.text_field :subject,:class=>"input",required: true %>
+	</div>
+</div>
+<div class='row formfields'>
+	<div class='col col-md-2'>
+		<%=f.label :description %>
+	</div>
+	<div class='offset-1 col col-md-9'>
+		<%=f.text_field :description,:class=>"input",required: true %>
+	</div>
+</div>
