@@ -8,17 +8,13 @@
 		<%=link_to '#', "data-toggle"=>"modal", "data-target" => "#new",:class=>'btn btn-warning navbar-brand ml-auto' do %>
 			<i>Create new feedback</i>
 		<%end%>
-		<!--<%= form_tag(feedbacks_path, :method => "get", id: "feedback-form",:class=>"form-inline") do %>
-			<%= text_field_tag :search, params[:search], placeholder: "Search feedbacks",:class=>"form-control mr-sm-2" %>
-			<%= submit_tag "Search",:class=>"btn btn-outline-success my-2 my-sm-0" %>
-		<% end %>-->
 	</nav>
 	<div class="modal fade" id="new" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	        <h5 class="modal-title" id="exampleModalLabel">Create Feedback</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
 	      </div>
@@ -29,145 +25,145 @@
       			</div>   
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new_feedback_cancel">Cancel</button>
 		         <%=f.submit 'Create' ,:class=>'btn btn-success'%>
 		      </div>
 		    <%end %>
 	    </div>
 	  </div>
 	</div>
-	<div class="feedbacklist">
-		<table class="table table-bordered table-hover" id="feedbacks_table">
-			<thead class="thead-light">
-				<tr>
-					<th>sl.no</th>
-					<th>Name</th>
-					<th>Email</th>
-					<th>Subject</th>
-					<th>Description</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @feedbacks.each do |feedback| %> 
+	<div class="row">
+		<div class=" table-responsive feedbacklist">
+			<table class="table table-bordered table-hover" id="feedbacks_table">
+				<thead class="thead-light">
 					<tr>
-						<td class="feedback-list">
-							<%= feedback.id %>
-						</td>
-						<td>
-							<strong><%= feedback.name %></strong>
-						</td>
-						<td>
-							<%= feedback.email %>
-						</td>
-						<td>
-							<strong><%= feedback.subject %></strong>
-						</td>
-						<td>
-							<%= feedback.description %>
-						</td>
-						<td>
-							<%= link_to '#', "data-toggle"=>"modal", "data-target" => "#show-#{feedback.id}",:class=>'btn btn-info btns' do %>
-								<i class="fa fa-eye"></i>
-							<% end %>
-							<%= link_to '#', "data-toggle"=>"modal", "data-target" => "#edit-#{feedback.id}",:class=>'btn btn-secondary btns' do %>
-								<i class="fa fa-pencil"></i>
-							<% end %>
-							<%= link_to '#', "data-toggle"=>"modal", "data-target" => "#delete-#{feedback.id}",:class=>'btn btn-danger btn' do %>
-								<i class="fa fa-trash"></i>
-							<% end %>
-								<div class="modal fade" id="delete-<%= feedback.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-									 <div class="modal-dialog modal-dialog-scrollable" role="document">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <h5 class="modal-title" id="exampleModalScrollableTitle">Delete</h5>
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									          <span aria-hidden="true">&times;</span>
-									        </button>
-									      </div>
-									      <div class="modal-body">
-									        Do you want to delete the feedback?
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									        <%= link_to 'Yes', feedback_path(feedback), method: :delete, :class => 'btn btn-danger'%>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-									<div class="modal fade" id="show-<%= feedback.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-									 <div class="modal-dialog modal-dialog-scrollable" role="document">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <h5 class="modal-title" id="exampleModalScrollableTitle">Feedback from <%= feedback.name%></h5>
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									          <span aria-hidden="true">&times;</span>
-									        </button>
-									      </div>
-									      <div class="modal-body">
-										     	<div class="row">
-											     	<div class="col-md-4">
-											        <strong>Name:</strong>
-											      </div>
-											      <div class="col-md-8">
-											      	<%= feedback.name %>
-											      </div> 
-											      <div class="col-md-4">
-										        	<strong>email:</strong>
-										        </div>
-										        <div class="col-md-8">
-										        	<%= feedback.email %>
-										       	</div>
-										       	<div class="col-md-4">
-										        	<strong>subject:</strong>
-										        </div>
-										        <div class="col-md-8">
-										        	<%= feedback.subject %>
-										      	</div>
-										      	<div class="col-md-4">
-										        <strong>feedback:</strong>
-										        </div>
-										        <div class="col-md-8">
-										        	<%= feedback.description %>
-										        </div>
-										      </div>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-									      </div>
-									    </div>
-									  </div>
-									</div>
-									<div class="modal fade" id="edit-<%= feedback.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-									  <div class="modal-dialog" role="document">
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <h5 class="modal-title" id="exampleModalLabel">Edit Feedback</h5>
-									        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									          <span aria-hidden="true">&times;</span>
-									        </button>
-									      </div>
-									      <%= form_for feedback,url: feedback_path(feedback),method: :put do |f| %>
-										      <div class="modal-body">
-										        <div>   
-                        			<%= render :partial => "form", :locals =>{:f=>f} %>
-                      			</div>   
-										      </div>
-										      <div class="modal-footer">
-										        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-										         <%=f.submit 'Update' ,:class=>'btn btn-success'%>
-										      </div>
-										    <%end %>
-									    </div>
-									  </div>
-									</div>
-								</div>
-							</div>
-						</td>
+						<th scope="col">sl.no</th>
+						<th scope="col">Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Subject</th>
+						<th scope="col">Description</th>
+						<th scope="col" style="width:20%">Actions</th>
 					</tr>
-				<% end %> 
-			</tbody>
-		</table>
+				</thead>
+				<tbody>
+					<% @feedbacks.each do |feedback| %> 
+						<tr>
+							<td class="feedback-list">
+								<%= feedback.id %>
+							</td>
+							<td>
+								<strong><%= feedback.name %></strong>
+							</td>
+							<td>
+								<%= feedback.email %>
+							</td>
+							<td>
+								<%= feedback.subject %> 
+							</td>
+							<td>
+								<%= feedback.description %>
+							</td>
+							<td>
+								<%= link_to '#', "data-toggle"=>"modal", "data-target" => "#show-#{feedback.id}",:class=>'btn btn-info btns' do %>
+									<i class="fa fa-eye"></i>
+								<% end %>
+								<%= link_to '#', "data-toggle"=>"modal", "data-target" => "#edit-#{feedback.id}",:class=>'btn btn-secondary btns' do %>
+									<i class="fa fa-pencil"></i>
+								<% end %>
+								<%= link_to '#', "data-toggle"=>"modal", "data-target" => "#delete-#{feedback.id}",:class=>'btn btn-danger btn' do %>
+									<i class="fa fa-trash"></i>
+								<% end %>
+								<div class="modal fade" id="delete-<%= feedback.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+								 <div class="modal-dialog modal-dialog-scrollable" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalScrollableTitle">Delete</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+								        Do you want to delete the feedback?
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+								        <%= link_to 'Yes', feedback_path(feedback), method: :delete, :class => 'btn btn-danger'%>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<div class="modal fade" id="show-<%= feedback.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+								 <div class="modal-dialog modal-dialog-scrollable" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalScrollableTitle">Feedback from <%= feedback.name%></h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <div class="modal-body">
+									     	<div class="row">
+										     	<div class="col-md-4">
+										        <strong>Name:</strong>
+										      </div>
+										      <div class="col-md-8">
+										      	<%= feedback.name %>
+										      </div> 
+										      <div class="col-md-4">
+									        	<strong>email:</strong>
+									        </div>
+									        <div class="col-md-8">
+									        	<%= feedback.email %>
+									       	</div>
+									       	<div class="col-md-4">
+									        	<strong>subject:</strong>
+									        </div>
+									        <div class="col-md-8">
+									        	<%= feedback.subject %>
+									      	</div>
+									      	<div class="col-md-4">
+									        <strong>feedback:</strong>
+									        </div>
+									        <div class="col-md-8">
+									        	<%= feedback.description %>
+									        </div>
+									      </div>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+								<div class="modal fade edit_feedback_form" id="edit-<%= feedback.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title" id="exampleModalLabel">Edit Feedback</h5>
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Cancel">
+								          <span aria-hidden="true">&times;</span>
+								        </button>
+								      </div>
+								      <%= form_for feedback,url: feedback_path(feedback),method: :put do |f| %>
+									      <div class="modal-body">
+									        <div>   
+	                    			<%= render :partial => "form", :locals =>{:f=>f} %>
+	                  			</div>   
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="edit_feedback_cancel">Cancel</button>
+									         <%=f.submit 'Update' ,:class=>'btn btn-success'%>
+									      </div>
+									    <%end %>
+								    </div>
+								  </div>
+								</div>
+							</td>
+						</tr>
+					<% end %> 
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>
   

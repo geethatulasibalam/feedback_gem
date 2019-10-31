@@ -67,4 +67,6 @@ html, body {
 .error {
   color: red;
 }
- 
+.actions{
+	width:10;
+}
