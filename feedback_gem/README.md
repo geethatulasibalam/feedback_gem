@@ -9,6 +9,7 @@ How to use my plugin.
 
 ## Requirements
 Bootstrap
+
 Jquery
 
 ## Installation
